@@ -20,7 +20,6 @@ import (
 	"github.com/prometheus/prometheus/pkg/labels"
 	"github.com/prometheus/prometheus/tsdb/chunkenc"
 	"github.com/prometheus/prometheus/tsdb/chunks"
-	"github.com/prometheus/prometheus/tsdb/tombstones"
 )
 
 // The errors exposed.
@@ -226,13 +225,6 @@ type SampleIteratable interface {
 type ChunkIteratable interface {
 	// ChunkIterator returns a new iterator that iterates over non-overlapping chunks of the series.
 	Iterator() chunks.Iterator
-}
-
-// TODO(bwplotka): Remove in next Pr.
-type DeprecatedChunkSeriesSet interface {
-	Next() bool
-	At() (labels.Labels, []chunks.Meta, tombstones.Intervals)
-	Err() error
 }
 
 type Warnings []error
